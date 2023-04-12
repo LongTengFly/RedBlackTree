@@ -2,6 +2,9 @@
 #define _FLY_RED_BLACK_TREE_H_
 
 #define KEY_TYPE    int
+
+enum RB_COLOR{RED=0,BLACK};
+
 #if 0
 #define RBTREE_ENTRY(name,type)\
     struct name                         \

@@ -1,6 +1,6 @@
 #include "RedBlackTree.h"
 
-enum RB_COLOR{RED=0,BLACK};
+
 
 static void rbtree_left_rotate(RedBlackTree *T,rbtree_node *x)
 {
