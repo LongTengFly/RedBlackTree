@@ -49,7 +49,7 @@ static void rbtree_right_rotate(RedBlackTree *T,rbtree_node *y)
     
 }
 
-void rbtree_insert_fixup(RedBlackTree *T,rbtree_node *z)
+static void rbtree_insert_fixup(RedBlackTree *T,rbtree_node *z)
 {
     // z->color == RED
     while(z->parent->color==RED)
