@@ -1,7 +1,6 @@
 #include "RedBlackTree.h"
 
 
-
 static void rbtree_left_rotate(RedBlackTree *T,rbtree_node *x)
 {
     rbtree_node *y = x->right;
@@ -63,7 +62,7 @@ void rbtree_insert_fixup(RedBlackTree *T,rbtree_node *z)
             {
                 y->color=BLACK;
                 z->parent->color=BLACK;
-                z->parent->parent=RED;
+                z->parent->parent->color=RED;
 
                 // You have to make sure Z is red every time you go through it.
                 z=z->parent->parent;// z->color == RED
@@ -126,28 +125,33 @@ void rbtree_insert(RedBlackTree *T,rbtree_node *z)
     while(cur!=T->nil)
     {
         pre=cur;
-        if(z->value>cur->value)
+        if(z->key>cur->key)
             cur=cur->right;
-        else if(z->value<cur->value)
+        else if(z->key<cur->key)
             cur=cur->left;
         else
             return;
     }
+	
+	z->parent=pre;
     if(pre==T->nil)
+	{
         T->root=z;
+	}
     else
     {
-        if(pre->value>z->value)
+        if(pre->key>z->key)
             pre->left=z;
         else
             pre->right=z;
     }
-
-    z->parent=pre;
+	
+    
     z->left=T->nil;
     z->right=T->nil;
 
     z->color=RED;
+	rbtree_insert_fixup(T,z);
 }
 
 /**********************红黑树删除 start***************************/

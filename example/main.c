@@ -1,5 +1,6 @@
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "../src/RedBlackTree.h"
 
 /**********************红黑树使用示例 start***************************/
@@ -32,24 +33,34 @@ int main() {
 		node = (rbtree_node*)malloc(sizeof(rbtree_node));
 		node->key = keyArray[i];
 		node->value = NULL;
-
+		printf("insert arr[%d]=%d\n",i,keyArray[i]);
 		rbtree_insert(T, node);
+		printf("insert end\n");
 
 	}
-
+	printf("----------------------------------------\n");
 	rbtree_traversal(T, T->root);
 	printf("----------------------------------------\n");
 
 	for (i = 0; i < 20; i++) {
 		printf("search key = %d\n", keyArray[i]);
 		rbtree_node *node = rbtree_search(T, keyArray[i]);
-		printf("delete key = %d\n", node->key);
-		rbtree_node *cur = rbtree_delete(T, node);
-		free(cur);
+
+		if(node!=T->nil)
+		{
+			printf("delete key = %d\n", node->key);
+			rbtree_node *cur = rbtree_delete(T, node);
+			free(cur);
+		}
+		else
+			break;
+		
 		printf("show rbtree: \n");
 		rbtree_traversal(T, T->root);
 		printf("----------------------------------------\n");
 	}
+    if(T!=NULL)
+        free (T);
 }
 
 // gcc -o example main.c ../src/RedBlackTree.c

@@ -43,6 +43,8 @@ typedef struct _RedBlackTree
 
 }RedBlackTree;
 
-
+extern void rbtree_insert(RedBlackTree *T,rbtree_node *z);
+extern rbtree_node *rbtree_delete(RedBlackTree *T, rbtree_node *z) ;
+extern rbtree_node *rbtree_search(RedBlackTree *T, KEY_TYPE key);
 
 #endif
